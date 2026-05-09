@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InfluenceAI - Models</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;family=Newsreader:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#908fa0",
+                        "error-container": "#93000a",
+                        "surface-dim": "#13131b",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#34343d",
+                        "on-secondary-fixed": "#001f25",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "surface-container-lowest": "#0d0d15",
+                        "surface-container": "#1f1f27",
+                        "accent": "#F472B6",
+                        "surface-container-high": "#292932",
+                        "inverse-on-surface": "#303038",
+                        "tertiary-fixed": "#ffdcc5",
+                        "secondary": "#5de6ff",
+                        "on-secondary": "#00363e",
+                        "primary-container": "#8083ff",
+                        "inverse-surface": "#e4e1ed",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "primary": "#c0c1ff",
+                        "on-primary": "#1000a9",
+                        "glow-shadow": "0 0 20px rgba(99, 102, 241, 0.3)",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "surface": "#111827",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-surface": "#e4e1ed",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#00cbe6",
+                        "primary-gradient": "linear-gradient(135deg, #6366F1 0%, #22D3EE 100%)",
+                        "on-primary-container": "#0d0096",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-fixed": "#07006c",
+                        "background": "#0B0F19",
+                        "on-tertiary-container": "#452000",
+                        "on-secondary-container": "#00515d",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-variant": "#34343d",
+                        "surface-bright": "#393841",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#4f2500",
+                        "secondary-fixed": "#a2eeff",
+                        "tertiary-container": "#d97721",
+                        "primary-fixed": "#e1e0ff",
+                        "outline-variant": "#464554",
+                        "surface-container-low": "#1b1b23",
+                        "tertiary": "#ffb783",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-background": "#e4e1ed",
+                        "inverse-primary": "#494bd6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-xs": "4px",
+                        "space-sm": "8px",
+                        "space-md": "16px",
+                        "space-lg": "24px",
+                        "space-xl": "48px",
+                        "gutter": "24px",
+                        "sidebar-width": "240px",
+                        "margin-page": "40px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-h1": ["Moonrising", "sans-serif"], 
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Newsreader"],
+                        "body-lg": ["Newsreader"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-h1": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Fallback for Moonrising font if not loaded natively */
+        @font-face {
+            font-family: 'Moonrising';
+            src: local('Arial'); /* Fallback */
+        }
+        
+        /* Times New Roman specific class */
+        .font-times {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #6366F1 0%, #22D3EE 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md">
+<!-- SideNavBar (Shared Component JSON) -->
+<nav class="bg-surface dark:bg-surface fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low dark:bg-surface-container-low backdrop-blur-xl border-r border-outline-variant/10 shadow-glow-shadow z-40 hidden md:flex flex-col p-gutter gap-space-lg overflow-y-auto">
+<div class="mb-space-md">
+<h1 class="font-display-h1 text-headline-md bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">InfluenceAI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">AI Influencer Hub</p>
+</div>
+<button class="bg-primary-gradient text-white font-label-md text-label-md rounded-lg py-3 px-4 shadow-glow-shadow hover:scale-105 transition-all duration-300 ease-out active:scale-95 text-center flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            Create Post
+        </button>
+<div class="flex flex-col gap-space-sm mt-space-md flex-grow">
+<!-- Inactive -->
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<!-- Active (Models) -->
+<a class="flex items-center gap-base text-primary dark:text-primary font-label-md bg-surface-container-high/50 rounded-lg px-space-md py-base shadow-glow-shadow active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                Models
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                Calendar
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">switch_account</span>
+                Accounts
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Analytics
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto pt-space-lg border-t border-outline-variant/20">
+<div class="flex items-center gap-base text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-accent">bolt</span>
+<span>Credits: 840/1000</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2">
+<div class="bg-accent h-1.5 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</nav>
+<!-- TopAppBar (Shared Component JSON) -->
+<header class="bg-background/80 dark:bg-background/80 fixed top-0 right-0 left-0 md:left-sidebar-width z-30 backdrop-blur-xl border-b border-outline-variant/10 flex items-center justify-between px-margin-page h-20 w-full md:w-[calc(100%-240px)]">
+<div class="flex-1 max-w-md hidden sm:block">
+<!-- Search Bar (on_left) -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 pl-10 pr-4 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-glow-shadow transition-all bg-opacity-50" placeholder="Search models, tags..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-md ml-auto">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-97">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-97">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+<button class="font-label-md text-label-md text-primary border border-primary rounded-lg px-4 py-1.5 hover:bg-primary/10 transition-colors duration-200 active:scale-97">
+                Upgrade
+            </button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden ml-2">
+<img alt="Creator Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a sophisticated young professional woman with smooth, glowing skin and sleek hair. She is looking directly at the camera with a confident, effortless expression. The lighting is soft and studio-quality, emphasizing high-end editorial fashion photography. The background is a minimalist, slightly out-of-focus dark slate grey, aligning with a modern, premium dark-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK1oWQBjxLDDsqqMSplnJ7ryKwRhpAbdVxYj3P6itABExVzxMv0ZUSRu1IJVpubqzmZLsj8iURLc4H2RksxKHBth5bYQXDeD71JtL4HxVr7fLgSFXr6kjVoOo3aqM89RnI0se7eEagH--K4mmoyxRBsuVLEnD3G3fVEgPHZJHkR4-E62JBCMyv-neZjpuvN3CoSpt4VhMLw4WtvtzHoFxJEQt9NKkWi-IvIVrfm-Nlq_Uc4-6wHlNKvFhqcp5Vfh5czgU6_6lt_3Rz"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full md:ml-sidebar-width pt-28 px-margin-page pb-margin-page">
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-space-xl gap-space-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Model Library</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Manage and deploy your AI personas. Browse existing models or create a new digital influencer.</p>
+</div>
+<button class="bg-primary-gradient text-white font-label-md text-label-md rounded-lg py-3 px-6 shadow-glow-shadow hover:scale-105 transition-all duration-300 ease-out active:scale-95 flex items-center gap-2 flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                Create New Model
+            </button>
+</div>
+<!-- Models Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="group relative bg-surface rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:scale-105 hover:shadow-glow-shadow hover:border-primary/50">
+<div class="relative h-64 overflow-hidden">
+<img alt="Luna Vogue" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A striking portrait of a photorealistic AI-generated fashion influencer. She has sharp, high-cheekbone features, vivid neon pink and cyan hair styled in a sleek bob, and wears futuristic high-fashion streetwear. The lighting features dramatic rim lights and a soft cyberpunk neon glow against a deep dark background, perfectly embodying a high-end, magical AI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAch5IUHMH8Vpe1X0By6MQRCV87DBSzqBcfyR6xXaeXsnVJpl43_-6pRbJp1L5Dkur1Q_dMM0LIE_NAFfnk3hZFKZE8uhqsNGg1i4-hrSuwaCK6fouM7D3VVeRPNGWO-_rVMh4B2MT2C8Cu5Ztk_qTm5pofsUYzmYtZT0eqyb3_FtnfqObmACwre2bBzcsnkAPnSju40Pfq0LSxOMXJtzimk0oQ9GwQpeZgieQSNeEKQkgC7WuvZgpEKyfQsQlfT2n8T8WUt3wrAjhm"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute top-3 right-3 bg-surface-container-high/80 backdrop-blur-md rounded-full px-2 py-1 flex items-center gap-1 border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Active</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-grow bg-surface relative z-10">
+<h3 class="font-display-h1 text-[24px] text-on-surface leading-none mb-2">Luna Vogue</h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high text-primary font-label-sm text-label-sm px-2 py-1 rounded-md border border-primary/20">High Fashion</span>
+<span class="bg-surface-container-high text-secondary font-label-sm text-label-sm px-2 py-1 rounded-md border border-secondary/20">Cyberpunk</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/10 flex justify-between items-center text-on-surface-variant font-times text-sm">
+<span>Created: Oct 12, 2023</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-surface rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:scale-105 hover:shadow-glow-shadow hover:border-primary/50">
+<div class="relative h-64 overflow-hidden">
+<img alt="Marcus Tech" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A portrait of a male AI persona designed as a tech reviewer. He wears minimalist dark clothing and clear-rimmed glasses. The setting is a sleek, modern studio with subtle LED strip lighting in deep blues and purples. The mood is analytical and professional, with a high-contrast, polished tech-aesthetic over a dark surface background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjcHeRKvnqMihBUf_kM3ML5xo5KNShedPZf6HJQIrgnvfYVhpudvVaZ2QDUwe84adRw_1ow8I7ogbdI_4nyZQa7RH1etXiwK50qwr1DYRyGkzLO-Cha5f1J6Cj0QuchD_sDUoql1Oc1sQ43-DG2eU9Unq0rJkdkxD_iCv02kbzuxVoWUYgRnfMjlbA-PYp_LwV70SXwQXj6QxX-C7wgM1JhR2XVJKH7p1AV2g9AlH4kpaklqqj70VDapp_ckZ1CifaBY1sHh7v7QTl"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+<div class="p-space-md flex flex-col flex-grow bg-surface relative z-10">
+<h3 class="font-display-h1 text-[24px] text-on-surface leading-none mb-2">Marcus Byte</h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high text-secondary-container font-label-sm text-label-sm px-2 py-1 rounded-md border border-secondary-container/20">Tech Reviews</span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-md border border-outline-variant/30">Coding</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/10 flex justify-between items-center text-on-surface-variant font-times text-sm">
+<span>Created: Nov 05, 2023</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative bg-surface rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:scale-105 hover:shadow-glow-shadow hover:border-primary/50">
+<div class="relative h-64 overflow-hidden">
+<img alt="Aria Fit" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A dynamic, high-energy portrait of a female fitness AI influencer. She is in mid-motion during a workout, wearing premium, sleek activewear. The lighting is bright but sculpted, highlighting athletic definition against a deep, dramatic gym environment with subtle pink and blue neon accents. The image feels energetic, flawless, and aspirational." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3vQE6MrPMRCo6bjaU80F21iay9309XKuyyHOxACpUI3lled_OEjhY6RBGrT5LhDydaZ-Ygk2vv495a4uL6QcRwo_-uYdJnR15iPQu5hQ2SUorF2rWiPQ0spUGVXV4ppYa5_hXEm_MxxFpwXRwdrOm4O7MafeJDQINarBIZ9MJT8ojo98t7qzfL67tnEgbjZLkGI8MO3z9g_A7IF01Q2hdujdfXlFxKNxqpbvwmesYxhpZD_5fXn7GueABVAKbGzHIY8cUnJOhwuPv"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+<div class="p-space-md flex flex-col flex-grow bg-surface relative z-10">
+<h3 class="font-display-h1 text-[24px] text-on-surface leading-none mb-2">Aria Flex</h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high text-accent font-label-sm text-label-sm px-2 py-1 rounded-md border border-accent/20">Fitness</span>
+<span class="bg-surface-container-high text-tertiary font-label-sm text-label-sm px-2 py-1 rounded-md border border-tertiary/20">Wellness</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/10 flex justify-between items-center text-on-surface-variant font-times text-sm">
+<span>Created: Dec 18, 2023</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</div>
+</div>
+</div>
+<!-- Card 4 (Draft State) -->
+<div class="group relative bg-surface-container-low rounded-xl border border-dashed border-outline-variant/50 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:scale-105 hover:border-primary/50">
+<div class="relative h-64 overflow-hidden bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-outline-variant/50 group-hover:text-primary/50 transition-colors">model_training</span>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<div class="absolute top-3 right-3 bg-surface/80 backdrop-blur-md rounded-full px-2 py-1 flex items-center gap-1 border border-outline-variant/30">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Draft</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-grow bg-surface-container-low relative z-10 opacity-70 group-hover:opacity-100 transition-opacity">
+<h3 class="font-display-h1 text-[24px] text-on-surface leading-none mb-2 italic">Project X</h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-md border border-outline-variant/20">Lifestyle</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/10 flex justify-between items-center text-on-surface-variant font-times text-sm">
+<span>Started: Jan 02, 2024</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

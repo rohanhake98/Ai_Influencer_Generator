@@ -1,0 +1,128 @@
+flowchart LR
+
+%% =========================
+%% AUTH FLOW
+%% =========================
+subgraph AUTH ["Authentication Flow"]
+    A[Landing Screen] --> B{Is Auth?}
+    B -->|No| C[Sign In / Sign Up]
+    C --> D[Supabase Auth]
+    B -->|Yes| E[Dashboard]
+    D --> E
+end
+
+%% =========================
+%% DASHBOARD MODULES
+%% =========================
+subgraph DASH ["Dashboard Modules"]
+    E --> H[Home]
+    E --> M[Models / Studio]
+    E --> CAL[Calendar]
+    E --> ACC[Accounts]
+    E --> SET[Settings]
+end
+
+%% =========================
+%% HOME → ANALYTICS
+%% =========================
+subgraph ANALYTICS ["Analytics Section"]
+    H --> AN[Analytics Overview]
+end
+
+%% =========================
+%% MODEL / STUDIO FLOW
+%% =========================
+subgraph MODEL ["AI Influencer Model"]
+    M --> CM[Create New Model]
+    
+    CM --> CM1[Choose Gender]
+    CM --> CM2[Select Age]
+    CM --> CM3[Select Niche]
+    CM --> CM4[Style & Tone]
+    CM --> CM5[Upload Reference]
+    
+    CM5 --> GEN_MODEL[Generate AI Influencer]
+end
+
+%% =========================
+%% POST CREATION FLOW
+%% =========================
+subgraph POST ["Post Creation Flow"]
+    M --> P1[Create New Post]
+    
+    P1 --> P2[Select Model]
+    P1 --> P3[Select Social Media Account]
+    P1 --> P4[Enter Content Idea]
+    P1 --> P5[Upload Reference Image]
+    
+    P2 --> GEN_POST[AI Post Generator]
+    P3 --> GEN_POST
+    P4 --> GEN_POST
+    P5 --> GEN_POST
+    
+    GEN_POST --> PREVIEW[Post Preview UI]
+end
+
+%% =========================
+%% SCHEDULER
+%% =========================
+subgraph SCHEDULER ["Auto Scheduler"]
+    PREVIEW --> SCH[Schedule Post]
+    SCH --> INST[Instagram]
+    SCH --> LINK[LinkedIn]
+    SCH --> TWIT[Twitter/X]
+    SCH --> YT[YouTube]
+end
+
+%% =========================
+%% TRACKING
+%% =========================
+subgraph TRACK ["Performance Tracking"]
+    SCH --> PERF[Track Performance]
+    
+    PERF --> MET1[Engagement]
+    PERF --> MET2[Reach]
+    PERF --> MET3[Clicks]
+end
+
+%% =========================
+%% PRICING SYSTEM
+%% =========================
+subgraph PRICING ["Pricing Model"]
+    PR1[Free Plan\n300 Credits\n1 Account\nLimited Posts]
+    PR2[Standard Plan\n2000 Credits\n5 Accounts\nUnlimited Posts]
+    PR3[Pro Plan\n10000 Credits\nUnlimited Everything]
+end
+
+%% =========================
+%% CREDIT SYSTEM
+%% =========================
+subgraph CREDIT ["Credit Usage"]
+    GEN_MODEL -->|Uses Credits| CR1[50 Credits Deducted]
+    GEN_POST -->|Uses Credits| CR2[20 Credits Deducted]
+end
+
+%% =========================
+%% INTERACTIVITY (CLICKABLE)
+%% =========================
+click CM "https://yourapp.com/create-model" "Create Model"
+click P1 "https://yourapp.com/create-post" "Create Post"
+click SCH "https://yourapp.com/scheduler" "Open Scheduler"
+click PERF "https://yourapp.com/analytics" "View Analytics"
+click ACC "https://yourapp.com/accounts" "Manage Accounts"
+click SET "https://yourapp.com/settings" "Settings"
+
+%% =========================
+%% STYLING
+%% =========================
+classDef primary fill:#1e293b,stroke:#38bdf8,color:#fff,stroke-width:2px
+classDef secondary fill:#0f172a,stroke:#22c55e,color:#fff
+classDef danger fill:#7f1d1d,stroke:#ef4444,color:#fff
+classDef highlight fill:#1d4ed8,stroke:#93c5fd,color:#fff
+
+class A,B,C,D,E primary
+class H,M,CAL,ACC,SET secondary
+class GEN_MODEL,GEN_POST highlight
+class SCH,PERF highlight
+class PR1,PR2,PR3 secondary
+class CR1,CR2 danger

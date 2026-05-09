@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InfluenceAI - All Posts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;family=Newsreader:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Moonrising';
+            src: local('Times New Roman'); /* Fallback for local testing if Moonrising not available, standard says Times New Roman for body but Moonrising for display-h1. Will use Times New Roman as requested in prompt for body, Moonrising for headers if available, otherwise fallback. */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#908fa0",
+                      "error-container": "#93000a",
+                      "surface-dim": "#13131b",
+                      "on-error": "#690005",
+                      "surface-container-highest": "#34343d",
+                      "on-secondary-fixed": "#001f25",
+                      "on-secondary-fixed-variant": "#004e5a",
+                      "surface-container-lowest": "#0d0d15",
+                      "surface-container": "#1f1f27",
+                      "accent": "#F472B6",
+                      "surface-container-high": "#292932",
+                      "inverse-on-surface": "#303038",
+                      "tertiary-fixed": "#ffdcc5",
+                      "secondary": "#5de6ff",
+                      "on-secondary": "#00363e",
+                      "primary-container": "#8083ff",
+                      "inverse-surface": "#e4e1ed",
+                      "on-tertiary-fixed-variant": "#703700",
+                      "primary": "#c0c1ff",
+                      "on-primary": "#1000a9",
+                      "glow-shadow": "0 0 20px rgba(99, 102, 241, 0.3)",
+                      "surface-tint": "#c0c1ff",
+                      "secondary-fixed-dim": "#2fd9f4",
+                      "surface": "#111827",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "on-surface": "#e4e1ed",
+                      "error": "#ffb4ab",
+                      "secondary-container": "#00cbe6",
+                      "primary-gradient": "linear-gradient(135deg, #6366F1 0%, #22D3EE 100%)",
+                      "on-primary-container": "#0d0096",
+                      "on-surface-variant": "#c7c4d7",
+                      "on-primary-fixed": "#07006c",
+                      "background": "#0B0F19",
+                      "on-tertiary-container": "#452000",
+                      "on-secondary-container": "#00515d",
+                      "on-tertiary-fixed": "#301400",
+                      "surface-variant": "#34343d",
+                      "surface-bright": "#393841",
+                      "tertiary-fixed-dim": "#ffb783",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary": "#4f2500",
+                      "secondary-fixed": "#a2eeff",
+                      "tertiary-container": "#d97721",
+                      "primary-fixed": "#e1e0ff",
+                      "outline-variant": "#464554",
+                      "surface-container-low": "#1b1b23",
+                      "tertiary": "#ffb783",
+                      "on-primary-fixed-variant": "#2f2ebe",
+                      "on-background": "#e4e1ed",
+                      "inverse-primary": "#494bd6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "space-xs": "4px",
+                      "space-sm": "8px",
+                      "space-md": "16px",
+                      "space-lg": "24px",
+                      "space-xl": "48px",
+                      "gutter": "24px",
+                      "sidebar-width": "240px",
+                      "margin-page": "40px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-h1": [
+                              "Moonrising", "sans-serif"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Times New Roman", "serif" /* User requested Times New Roman */
+                      ],
+                      "body-lg": [
+                              "Times New Roman", "serif"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-h1": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full p-gutter gap-space-lg overflow-y-auto bg-surface-container-low backdrop-blur-xl border-r border-outline-variant/10 shadow-glow-shadow fixed left-0 top-0 w-sidebar-width z-50">
+<!-- Header -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<h1 class="font-display-h1 text-headline-md bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">InfluenceAI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">AI Influencer Hub</p>
+</div>
+<!-- Create Post CTA -->
+<button class="bg-gradient-to-br from-[#6366F1] to-[#22D3EE] text-white font-label-md text-label-md rounded-lg py-space-sm px-space-md w-full shadow-glow-shadow hover:scale-105 transition-all duration-300 ease-out active:scale-95 flex items-center justify-center gap-space-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            Create Post
+        </button>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-space-xs mt-space-md">
+<a class="flex items-center gap-base text-primary font-label-md text-label-md bg-surface-container-high/50 rounded-lg px-space-md py-base shadow-glow-shadow active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+                Models
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                Calendar
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95" href="#">
+<span class="material-symbols-outlined">switch_account</span>
+                Accounts
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- Footer -->
+<div class="mt-auto pt-space-md border-t border-outline-variant/10">
+<div class="flex items-center gap-base text-on-surface-variant font-label-sm text-label-sm px-space-sm py-base">
+<span class="material-symbols-outlined text-accent" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Credits: 840/1000
+            </div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2">
+<div class="bg-accent h-1.5 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="hidden md:flex items-center justify-between px-margin-page h-20 w-full fixed top-0 right-0 left-sidebar-width z-40 bg-background/80 backdrop-blur-xl border-b border-outline-variant/10">
+<!-- Search Bar area (on left as per JSON) -->
+<div class="flex items-center flex-1">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg pl-10 pr-4 py-2 text-label-sm font-label-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all bg-transparent" placeholder="Search posts..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-space-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-97">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-97">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+<button class="border border-primary text-primary font-label-sm text-label-sm rounded-lg px-4 py-1.5 hover:bg-primary/10 transition-colors duration-200 active:scale-97">
+                Upgrade
+            </button>
+<img alt="Creator Profile" class="w-8 h-8 rounded-full border border-outline-variant/30 object-cover ml-space-sm" data-alt="A close up, high quality studio portrait of a futuristic AI influencer avatar. The subject has glowing neon accents and flawless skin, set against a dark tech-noir background. Soft studio lighting highlights the intricate details of their futuristic streetwear. The aesthetic is ultra-modern, echoing high-end editorial fashion mixed with cyberpunk elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv5AQc2Qurh6oXa-aHsh3HwgETg_g7yXnX-vEJBMG2I6Smf7KsjrBygdsY1fkjsjdUR_5zo96tzdLFztD-ZPKgH8FKVbZ25Q_Kjk_8grEkQjmHYecLQ6i3QO899_-lxPS999IpWDnEgwfQkPu8XUSLe5oYXj0-LMe3_eGv6gU8F512yyq7HZEgezsk0MCC2GqDW_eLY0ZVrOCccY8vUCRzt-iHumawzSNyj2q_LhHeCW_o_rXGzMpAsE1Rwo3imMoyRPw0N8Vm2kro"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="md:ml-sidebar-width pt-24 px-margin-page pb-margin-page min-h-screen">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">Generated Posts</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Review, edit, and schedule your AI-generated content across all connected platforms. Utilize the tools below to filter and manage your creative output efficiently.</p>
+</div>
+<!-- Filters & Actions -->
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-2 bg-surface-container border border-outline-variant/20 rounded-lg px-4 py-2 font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Filter
+                </button>
+<button class="flex items-center gap-2 bg-surface-container border border-outline-variant/20 rounded-lg px-4 py-2 font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+                    Sort
+                </button>
+</div>
+</div>
+<!-- Posts Bento Grid / Advanced List -->
+<div class="grid grid-cols-1 gap-space-lg">
+<!-- Post Item 1 -->
+<div class="bg-surface border border-outline-variant/20 rounded-xl p-space-md flex flex-col md:flex-row gap-space-lg hover:shadow-glow-shadow transition-shadow duration-300 group">
+<!-- Image Preview -->
+<div class="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0 relative bg-surface-container-low">
+<img alt="Post preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stunning high-fashion photography shot featuring an AI-generated female model in a futuristic cyberpunk metropolis. She wears glowing holographic streetwear. The lighting is cinematic, with neon pink and cyan reflecting off wet pavement in the background. The mood is edgy, sophisticated, and deeply atmospheric, blending haute couture with sci-fi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASFLe44lVnBtj6Qa-vfZQR_qOVcQlIOQCSRwf-2461kLJzCyPElPa2FA2ufRK_YoKuSJvTVGq73bn3tOmWXUXkBrur4rR86HyaEHQ4vESs4-00NmBBrnZh2iZx55cC6vEklOnGCQs9vRIVn6dNX9HWeBXbDKUwLnJJE1buLb44wCYyySSRC9KwHuOVjmlEgU6_vrbjR5MqNmajuD5PWUP6p24V2WNPuGiA8VGX8r2m3hhUhjlUfFBCsp8Ferq-cszq8FWVL81K2JBc"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-md rounded px-2 py-1 flex items-center">
+<span class="material-symbols-outlined text-[14px] text-white">photo_camera</span>
+</div>
+</div>
+<!-- Content & Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-4 mb-2">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface line-clamp-1">Neon Nights Campaign - Launch Post</h3>
+<div class="flex items-center gap-2 shrink-0">
+<span class="px-2 py-1 rounded text-[10px] font-label-sm font-bold tracking-wide uppercase bg-secondary/10 text-secondary border border-secondary/20">Scheduled</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">
+                            Embracing the glow of the city tonight. 🌃✨ This new cyber-couture collection drops at midnight. Are you ready to upgrade your aesthetic? Link in bio to secure your exclusive presale access. #CyberFashion #NeonNights #InfluenceAI
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-space-md">
+<!-- Platform -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+                                Instagram
+                            </div>
+<!-- Date -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                Oct 24, 2023 - 18:00 EST
+                            </div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Post Item 2 -->
+<div class="bg-surface border border-outline-variant/20 rounded-xl p-space-md flex flex-col md:flex-row gap-space-lg hover:shadow-glow-shadow transition-shadow duration-300 group">
+<!-- Image Preview -->
+<div class="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0 relative bg-surface-container-low">
+<img alt="Post preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist, abstract 3D rendering of soft, floating geometric shapes in a vast, dark studio space. The shapes are illuminated by a single, dramatic spotlight, casting long, elegant shadows. The color palette revolves around deep indigo, stark white, and subtle hints of glowing cyan. The aesthetic is clean, sophisticated, and highly modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeIt8zvCQQPb5vlNAD_K6JQ-4p3JhfmZ78FK1yKhDjbBCFCjH_ZXx2je03c0zAx0OW5u-3354PDpRr_VG58Fbx34QZaLQZ5lY0kRJ-CXpycWCWnixWUM9_f6VL4LxJJPp5g7RHpPfBFgrMpi4XxqV2Ua9wWi4upBbxYTQcPxpP-lWvFgXK4aLU90-HE6yy0snhZpra56nTDpr2QsSX4qVWo4AqWPdaDbx211_2uj3EYaGX1rsva2ZkWSgLNNxBumVRiqxTFSGPEsGk"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-md rounded px-2 py-1 flex items-center">
+<span class="material-symbols-outlined text-[14px] text-white">videocam</span>
+</div>
+</div>
+<!-- Content & Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-4 mb-2">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface line-clamp-1">Minimalist Tech Review - X Thread</h3>
+<div class="flex items-center gap-2 shrink-0">
+<span class="px-2 py-1 rounded text-[10px] font-label-sm font-bold tracking-wide uppercase bg-primary/10 text-primary border border-primary/20">Published</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">
+                            1/5 Just got my hands on the new Quantum display setup. The minimalist aesthetic is exactly what my workspace needed. The color accuracy? Unmatched. Let's dive into the specs. 🧵👇 #TechSetup #Minimalist
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-space-md">
+<!-- Platform -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">alternate_email</span>
+                                X (Twitter)
+                            </div>
+<!-- Date -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                Oct 22, 2023 - 09:15 EST
+                            </div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Post Item 3 -->
+<div class="bg-surface border border-outline-variant/20 rounded-xl p-space-md flex flex-col md:flex-row gap-space-lg hover:shadow-glow-shadow transition-shadow duration-300 group opacity-75">
+<!-- Image Preview -->
+<div class="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0 relative bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[48px]">image</span>
+</div>
+<!-- Content & Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-4 mb-2">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface line-clamp-1 italic text-on-surface-variant">Q4 Strategy Update Idea</h3>
+<div class="flex items-center gap-2 shrink-0">
+<span class="px-2 py-1 rounded text-[10px] font-label-sm font-bold tracking-wide uppercase bg-surface-container-highest text-on-surface-variant border border-outline-variant/30">Draft</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4 italic">
+                            Drafting thoughts on how AI is reshaping creative workflows for Q4. Need to finalize the data points before generating the accompanying infographic.
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-space-md">
+<!-- Platform -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">work</span>
+                                LinkedIn
+                            </div>
+<!-- Date -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+                                Unscheduled
+                            </div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="px-3 py-1.5 rounded-lg bg-primary/10 text-primary font-label-sm text-label-sm hover:bg-primary/20 transition-colors">
+                                Continue Editing
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center gap-2 mt-space-xl">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center transition-colors">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+</body></html>

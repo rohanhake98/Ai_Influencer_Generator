@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analytics - InfluenceAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@400;600;700&amp;family=Newsreader:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Moonrising';
+            src: local('Arial Black'); /* Fallback for local testing if needed, though system asks for Moonrising conceptually */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#908fa0",
+                        "error-container": "#93000a",
+                        "surface-dim": "#13131b",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#34343d",
+                        "on-secondary-fixed": "#001f25",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "surface-container-lowest": "#0d0d15",
+                        "surface-container": "#1f1f27",
+                        "accent": "#F472B6",
+                        "surface-container-high": "#292932",
+                        "inverse-on-surface": "#303038",
+                        "tertiary-fixed": "#ffdcc5",
+                        "secondary": "#5de6ff",
+                        "on-secondary": "#00363e",
+                        "primary-container": "#8083ff",
+                        "inverse-surface": "#e4e1ed",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "primary": "#c0c1ff",
+                        "on-primary": "#1000a9",
+                        "glow-shadow": "0 0 20px rgba(99, 102, 241, 0.3)",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "surface": "#111827",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-surface": "#e4e1ed",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#00cbe6",
+                        "primary-gradient": "linear-gradient(135deg, #6366F1 0%, #22D3EE 100%)",
+                        "on-primary-container": "#0d0096",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-fixed": "#07006c",
+                        "background": "#0B0F19",
+                        "on-tertiary-container": "#452000",
+                        "on-secondary-container": "#00515d",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-variant": "#34343d",
+                        "surface-bright": "#393841",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#4f2500",
+                        "secondary-fixed": "#a2eeff",
+                        "tertiary-container": "#d97721",
+                        "primary-fixed": "#e1e0ff",
+                        "outline-variant": "#464554",
+                        "surface-container-low": "#1b1b23",
+                        "tertiary": "#ffb783",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-background": "#e4e1ed",
+                        "inverse-primary": "#494bd6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-xs": "4px",
+                        "space-sm": "8px",
+                        "space-md": "16px",
+                        "space-lg": "24px",
+                        "space-xl": "48px",
+                        "gutter": "24px",
+                        "sidebar-width": "240px",
+                        "margin-page": "40px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-h1": ["Moonrising"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Newsreader"],
+                        "body-lg": ["Newsreader"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-h1": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-sidebar-width z-50 backdrop-blur-xl border-b border-outline-variant/10 bg-background/80 dark:bg-background/80 flex items-center justify-between px-margin-page h-20 w-full hidden md:flex">
+<div class="flex items-center gap-space-lg w-1/2">
+<span class="font-display-h1 text-headline-md text-on-surface">InfluenceAI</span>
+<div class="relative w-full max-w-md hidden lg:block">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/20 rounded-full py-2 pl-12 pr-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-glow-shadow/10 font-label-md text-label-md transition-all" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<button class="hover:text-primary transition-colors duration-200 active:scale-97 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors duration-200 active:scale-97 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</button>
+<button class="px-space-md py-2 border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary/10 transition-colors duration-200 active:scale-97">
+                Upgrade
+            </button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container-high">
+<img alt="Creator Profile" class="w-full h-full object-cover" data-alt="A high-fashion portrait of a sleek, AI-generated female influencer with silver hair and glowing neon accents. She is looking directly at the camera with a sophisticated, effortless expression. The lighting is studio-quality, emphasizing the high-end SaaS glassmorphism aesthetic with deep blacks and vibrant neon purple and cyan glows. The background is a clean, dark surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2kp9K-u1soYMwYJn-U6N3eUIcmCHVR17Rq1TTV843Ph5OT4CUHQC_nJmspaPxOTCOasnpCqNxhncIMkoPiGjFDNCDDJdpLTitoYrTusQUfczlZpg3ZeJ2rGGFhAHW7kGqnVQpxVj2warEKMpaSI4v61dLEwcBlkDg1o5Nr_WR76dKSFVs2qWDeTFgEv2WDwLxd7d1aHLEUgue2MSdyWrd9FM1ikEby3s7Qpua5phUV1fTcJIB44yPS1OfOAM8XsgAupfxYUwaFJMM"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-surface dark:bg-surface bg-surface-container-low dark:bg-surface-container-low backdrop-blur-xl border-r border-outline-variant/10 shadow-glow-shadow z-40 hidden md:flex flex-col p-gutter gap-space-lg overflow-y-auto">
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<h1 class="font-display-h1 text-headline-md bg-gradient-to-br from-[#6366F1] to-[#22D3EE] bg-clip-text text-transparent">InfluenceAI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">AI Influencer Hub</p>
+</div>
+<button class="w-full py-3 px-4 rounded-lg bg-gradient-to-r from-[#6366F1] to-[#22D3EE] text-white font-label-md text-label-md flex items-center justify-center gap-2 hover:scale-105 transition-all duration-300 ease-out active:scale-95 shadow-glow-shadow">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+            Create Post
+        </button>
+<div class="flex flex-col gap-space-xs mt-space-md flex-1">
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+                Models
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                Calendar
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">switch_account</span>
+                Accounts
+            </a>
+<a class="flex items-center gap-base text-primary dark:text-primary font-label-md bg-surface-container-high/50 rounded-lg px-space-md py-base shadow-glow-shadow active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insights</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto pt-space-lg border-t border-outline-variant/10">
+<div class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base">
+<span class="material-symbols-outlined text-accent">bolt</span>
+                Credits: 840/1000
+            </div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2 overflow-hidden mx-space-md max-w-[calc(100%-32px)]">
+<div class="bg-accent h-1.5 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="md:ml-sidebar-width pt-20 p-margin-page min-h-screen">
+<!-- Header & Filters -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-space-xl gap-space-md">
+<div>
+<h2 class="font-display-h1 text-headline-lg text-on-surface mb-2">Performance</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Comprehensive insights across all your AI entities.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm bg-surface-container-low/50 backdrop-blur-md p-2 rounded-xl border border-outline-variant/20 shadow-glow-shadow/10">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface rounded-lg font-label-md text-label-md text-on-surface border border-outline-variant/10 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                    Last 30 Days
+                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface rounded-lg font-label-md text-label-md text-on-surface border border-outline-variant/10 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">public</span>
+                    All Platforms
+                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface rounded-lg font-label-md text-label-md text-on-surface border border-outline-variant/10 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+                    All Models
+                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl">
+<!-- Card 1 -->
+<div class="bg-surface/60 backdrop-blur-xl border border-outline-variant/10 rounded-2xl p-space-lg hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Reach</span>
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">visibility</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-2" style="font-family: 'Times New Roman', Times, serif;">12.4M</div>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +24.5% from last period
+                </div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface/60 backdrop-blur-xl border border-outline-variant/10 rounded-2xl p-space-lg hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-tertiary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Engagement Rate</span>
+<span class="material-symbols-outlined text-accent bg-accent/10 p-2 rounded-lg">favorite</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-2" style="font-family: 'Times New Roman', Times, serif;">8.2%</div>
+<div class="flex items-center gap-1 text-accent font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +1.2% from last period
+                </div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface/60 backdrop-blur-xl border border-outline-variant/10 rounded-2xl p-space-lg hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">New Followers</span>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">group_add</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-2" style="font-family: 'Times New Roman', Times, serif;">45.2K</div>
+<div class="flex items-center gap-1 text-error font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_down</span>
+                    -3.4% from last period
+                </div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface/60 backdrop-blur-xl border border-outline-variant/10 rounded-2xl p-space-lg hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden group">
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
+<div class="flex justify-between items-start mb-space-md relative z-10">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">AI Content ROI</span>
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">attach_money</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-2 relative z-10" style="font-family: 'Times New Roman', Times, serif;">420%</div>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm relative z-10">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +15.0% from last period
+                </div>
+</div>
+</div>
+<!-- Main Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Trend Chart -->
+<div class="lg:col-span-2 bg-surface/40 backdrop-blur-2xl border border-outline-variant/10 rounded-2xl p-space-lg relative overflow-hidden">
+<div class="absolute top-0 left-1/4 w-1/2 h-full bg-gradient-to-b from-primary/5 to-transparent blur-3xl -z-10"></div>
+<div class="flex justify-between items-center mb-space-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Growth Trajectory</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary shadow-[0_0_10px_rgba(93,230,255,0.8)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Reach</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-accent shadow-[0_0_10px_rgba(244,114,182,0.8)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Engagement</span>
+</div>
+</div>
+</div>
+<!-- Mock Line Chart Area -->
+<div class="h-80 w-full relative border-b border-l border-outline-variant/20 pb-4 pl-4 flex items-end">
+<!-- Y Axis Labels -->
+<div class="absolute left-[-30px] h-full flex flex-col justify-between text-on-surface-variant font-label-sm text-label-sm py-4" style="font-family: 'Times New Roman', Times, serif;">
+<span>100k</span>
+<span>75k</span>
+<span>50k</span>
+<span>25k</span>
+<span>0</span>
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 pl-4 pb-4 flex flex-col justify-between w-full h-full pointer-events-none">
+<div class="w-full border-t border-outline-variant/5"></div>
+<div class="w-full border-t border-outline-variant/5"></div>
+<div class="w-full border-t border-outline-variant/5"></div>
+<div class="w-full border-t border-outline-variant/5"></div>
+<div class="w-full border-t border-outline-variant/0"></div>
+</div>
+<!-- SVG Lines (Decorative representation) -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Engagement Area (Accent) -->
+<defs>
+<lineargradient id="accent-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#F472B6" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#F472B6" stop-opacity="0"></stop>
+</lineargradient>
+<lineargradient id="secondary-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5de6ff" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#5de6ff" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q10,75 20,80 T40,60 T60,65 T80,40 T100,45 L100,100 L0,100 Z" fill="url(#accent-grad)"></path>
+<path d="M0,80 Q10,75 20,80 T40,60 T60,65 T80,40 T100,45" fill="none" stroke="#F472B6" stroke-width="2" style="filter: drop-shadow(0 0 4px rgba(244,114,182,0.6));"></path>
+<!-- Reach Line (Secondary) -->
+<path d="M0,90 Q15,85 30,70 T50,50 T70,30 T85,20 T100,10 L100,100 L0,100 Z" fill="url(#secondary-grad)"></path>
+<path d="M0,90 Q15,85 30,70 T50,50 T70,30 T85,20 T100,10" fill="none" stroke="#5de6ff" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(93,230,255,0.8));"></path>
+<!-- Data Points -->
+<circle cx="50" cy="50" fill="#111827" r="3" stroke="#5de6ff" stroke-width="2"></circle>
+<circle cx="85" cy="20" fill="#111827" r="3" stroke="#5de6ff" stroke-width="2"></circle>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between w-full mt-2 pl-4 text-on-surface-variant font-label-sm text-label-sm" style="font-family: 'Times New Roman', Times, serif;">
+<span>Week 1</span>
+<span>Week 2</span>
+<span>Week 3</span>
+<span>Week 4</span>
+</div>
+</div>
+<!-- Platform Breakdown -->
+<div class="bg-surface/40 backdrop-blur-2xl border border-outline-variant/10 rounded-2xl p-space-lg flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-lg">Platform Performance</h3>
+<div class="flex flex-col gap-space-lg flex-1 justify-center">
+<!-- Instagram -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-accent">camera_alt</span> Instagram</span>
+<span class="text-on-surface" style="font-family: 'Times New Roman', Times, serif;">6.2M</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden shadow-inner">
+<div class="bg-gradient-to-r from-accent to-tertiary h-full rounded-full relative" style="width: 65%">
+<div class="absolute inset-0 bg-white/20 blur-[2px]"></div>
+</div>
+</div>
+</div>
+<!-- TikTok -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-secondary">music_note</span> TikTok</span>
+<span class="text-on-surface" style="font-family: 'Times New Roman', Times, serif;">4.8M</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden shadow-inner">
+<div class="bg-gradient-to-r from-secondary to-primary h-full rounded-full relative" style="width: 50%">
+<div class="absolute inset-0 bg-white/20 blur-[2px]"></div>
+</div>
+</div>
+</div>
+<!-- YouTube -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-error">play_arrow</span> YouTube</span>
+<span class="text-on-surface" style="font-family: 'Times New Roman', Times, serif;">1.4M</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden shadow-inner">
+<div class="bg-error h-full rounded-full relative" style="width: 25%">
+<div class="absolute inset-0 bg-white/20 blur-[2px]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

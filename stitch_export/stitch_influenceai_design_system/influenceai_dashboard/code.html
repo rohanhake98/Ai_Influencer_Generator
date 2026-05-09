@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InfluenceAI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Moonrising';
+            src: local('Times New Roman'); /* Fallback for local testing if Moonrising isn't available, but per instructions we use config */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#111827",
+                        "inverse-surface": "#e4e1ed",
+                        "on-surface": "#e4e1ed",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#00515d",
+                        "on-tertiary": "#4f2500",
+                        "on-tertiary-container": "#452000",
+                        "surface-container-lowest": "#0d0d15",
+                        "on-primary-container": "#0d0096",
+                        "on-primary-fixed": "#07006c",
+                        "background": "#0B0F19",
+                        "on-secondary-fixed": "#001f25",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "secondary-fixed": "#a2eeff",
+                        "surface-container": "#1f1f27",
+                        "surface-container-high": "#292932",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "secondary": "#5de6ff",
+                        "tertiary-fixed": "#ffdcc5",
+                        "surface-bright": "#393841",
+                        "outline-variant": "#464554",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#34343d",
+                        "on-secondary": "#00363e",
+                        "tertiary": "#ffb783",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#1000a9",
+                        "tertiary-container": "#d97721",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "primary": "#c0c1ff",
+                        "on-surface-variant": "#c7c4d7",
+                        "surface-container-low": "#1b1b23",
+                        "glow-shadow": "0 0 20px rgba(99, 102, 241, 0.3)",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "primary-container": "#8083ff",
+                        "surface-variant": "#34343d",
+                        "accent": "#F472B6",
+                        "secondary-container": "#00cbe6",
+                        "on-background": "#e4e1ed",
+                        "primary-gradient": "linear-gradient(135deg, #6366F1 0%, #22D3EE 100%)",
+                        "surface-tint": "#c0c1ff",
+                        "outline": "#908fa0",
+                        "inverse-primary": "#494bd6",
+                        "inverse-on-surface": "#303038",
+                        "surface-dim": "#13131b",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#e1e0ff",
+                        "on-tertiary-fixed": "#301400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-lg": "24px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "space-sm": "8px",
+                        "space-xl": "48px",
+                        "space-md": "16px",
+                        "sidebar-width": "240px",
+                        "margin-page": "40px",
+                        "space-xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Newsreader"],
+                        "headline-md": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Newsreader"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-h1": ["Moonrising", "Times New Roman"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-h1": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen w-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-surface dark:bg-surface bg-surface-container-low dark:bg-surface-container-low backdrop-blur-xl border-r border-outline-variant/10 shadow-glow-shadow z-40 flex flex-col p-gutter gap-space-lg overflow-y-auto">
+<!-- Header -->
+<div class="flex flex-col gap-space-xs mb-space-md">
+<h1 class="font-display-h1 text-headline-md bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">InfluenceAI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">AI Influencer Hub</p>
+</div>
+<!-- CTA -->
+<button class="w-full py-space-sm px-space-md rounded-lg font-label-md text-label-md text-background" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';" onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 20px rgba(99, 102, 241, 0.5)';" style="background: linear-gradient(135deg, #6366F1 0%, #22D3EE 100%); transition: all 0.3s ease-out;">
+            Create Post
+        </button>
+<!-- Tabs -->
+<div class="flex flex-col gap-space-xs flex-1 mt-space-md">
+<!-- Active Tab: Home -->
+<a class="flex items-center gap-base text-primary dark:text-primary font-label-md text-label-md bg-surface-container-high/50 rounded-lg px-space-md py-base shadow-glow-shadow hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                Home
+            </a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+                Models
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                Calendar
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">switch_account</span>
+                Accounts
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-base text-on-surface-variant dark:text-on-surface-variant font-label-md text-label-md px-space-md py-base hover:scale-105 hover:bg-surface-container-high transition-all duration-300 ease-out rounded-lg active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer -->
+<div class="mt-auto pt-space-lg border-t border-outline-variant/10">
+<div class="flex items-center gap-base text-on-surface-variant font-label-md text-label-md px-space-md py-base">
+<span class="material-symbols-outlined text-accent" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Credits: 840/1000
+            </div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2 px-space-md mx-space-md box-border max-w-[calc(100%-32px)]">
+<div class="bg-accent h-1.5 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width flex-1 h-full overflow-y-auto p-margin-page bg-background">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-space-xl">
+<div>
+<h2 class="font-display-h1 text-display-h1 text-on-surface mb-space-xs">Welcome back, Creator</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here is your influence overview for today.</p>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Stats Row -->
+<div class="col-span-12 grid grid-cols-3 gap-gutter mb-space-lg">
+<!-- Stat Card 1 -->
+<div class="bg-surface/80 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-space-lg hover:scale-[1.03] transition-transform duration-300 flex flex-col justify-between">
+<div class="flex justify-between items-center mb-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Followers</span>
+<span class="material-symbols-outlined text-primary">group</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">1.2M</div>
+<div class="font-label-sm text-label-sm text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12.5% this week
+                        </div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface/80 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-space-lg hover:scale-[1.03] transition-transform duration-300 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex justify-between items-center mb-space-md relative z-10">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Engagement Rate</span>
+<span class="material-symbols-outlined text-accent">favorite</span>
+</div>
+<div class="relative z-10">
+<div class="font-headline-lg text-headline-lg text-on-surface">8.4%</div>
+<div class="font-label-sm text-label-sm text-accent mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +2.1% this week
+                        </div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface/80 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-space-lg hover:scale-[1.03] transition-transform duration-300 flex flex-col justify-between shadow-glow-shadow">
+<div class="flex justify-between items-center mb-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Generations Left</span>
+<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">840</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Resets in 12 hours</div>
+</div>
+</div>
+</div>
+<!-- Analytics Chart Area (Simulated) -->
+<div class="col-span-8 bg-surface/60 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-space-lg">
+<div class="flex justify-between items-center mb-space-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Audience Growth</h3>
+<select class="bg-surface-container border border-outline-variant/30 rounded-lg px-3 py-1 font-label-sm text-label-sm text-on-surface focus:ring-primary focus:border-primary">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<!-- Smooth Line Chart Simulation -->
+<div class="h-64 w-full relative border-b border-l border-outline-variant/20 flex items-end px-2 pb-2">
+<!-- Grid lines -->
+<div class="absolute w-full h-full border-t border-outline-variant/10 top-1/4"></div>
+<div class="absolute w-full h-full border-t border-outline-variant/10 top-2/4"></div>
+<div class="absolute w-full h-full border-t border-outline-variant/10 top-3/4"></div>
+<!-- SVG Chart Line -->
+<svg class="w-full h-full absolute bottom-0 left-0" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#6366F1" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#6366F1" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q10,70 20,75 T40,50 T60,60 T80,30 T100,20 L100,100 L0,100 Z" fill="url(#chartGradient)"></path>
+<path class="drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" d="M0,80 Q10,70 20,75 T40,50 T60,60 T80,30 T100,20" fill="none" stroke="#22D3EE" stroke-linecap="round" stroke-width="2"></path>
+<!-- Data Points -->
+<circle class="shadow-glow-shadow" cx="20" cy="75" fill="#22D3EE" r="2"></circle>
+<circle cx="40" cy="50" fill="#22D3EE" r="2"></circle>
+<circle cx="60" cy="60" fill="#22D3EE" r="2"></circle>
+<circle cx="80" cy="30" fill="#22D3EE" r="2"></circle>
+<circle cx="100" cy="20" fill="#22D3EE" r="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Top Posts Vertical Grid -->
+<div class="col-span-4 bg-surface/60 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-space-lg flex flex-col gap-space-md">
+<div class="flex justify-between items-center mb-space-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Top Posts</h3>
+<button class="text-primary hover:text-secondary transition-colors font-label-sm text-label-sm">View All</button>
+</div>
+<!-- Post Item 1 -->
+<div class="flex gap-space-md items-center group cursor-pointer p-2 rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img alt="Top Post 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A futuristic, high-fashion AI generated portrait of a cybernetic influencer in a neon-lit Tokyo street. The style is hyper-realistic with strong contrast, deep blacks, and glowing cyan and magenta highlights. The aesthetic matches a modern, high-end digital art portfolio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL_FcdAyrojeVYjrCkgv1e576UfSjElig63ukWZlm7surDlyN-uq5V0_5tR28lL61Cj3uhqWOxXb7GWXdkdwcWYWObfaNVIW_l43nnMZMezVzqvmrJy35byo8nnNJGJgBI5Hz4sioM1CTGSxSlt2o2YH8amO0NaPZBpO5MaxHlX_Ri0zREdqia0x_lFjLj5j417cTMR1AQG7n1QCV-oTTGgy2aRlWfbmrMF0Or_gJDZ23B30GMV2b1TeiRCmAq7mNSIorcLB_lWpDM"/>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-label-md text-on-surface truncate mb-1">Cyberpunk Editorial #04</div>
+<div class="flex gap-4 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">favorite</span> 45.2k</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">chat_bubble</span> 1.2k</span>
+</div>
+</div>
+</div>
+<!-- Post Item 2 -->
+<div class="flex gap-space-md items-center group cursor-pointer p-2 rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img alt="Top Post 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Abstract 3D rendered geometric shapes floating in a minimalist dark void. The materials are glossy glass and brushed metal, reflecting soft, subtle bioluminescent lighting in purples and blues. The composition is asymmetrical and highly polished, suitable for a tech SaaS background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcD2XPH1AvgyNvWPOtvtUjLw65agJbs_7ghGjN3WXflQZ_Sll6jZo34WX4EgWypMg_Mbv6U0fGr-KCcBPegykKrIiNV6Hf8lHUmTDMmtDcuT86JFIgvVZwpk9zt0FrHH4E2KZ2l5j9Z73394J2uLMhE_7hLrHBt5sLIwBP9yeM7I_bpT_P5ngSov95eXFpBqvvr00xVuduAagMgNeFer6Fig6yDQCYaqbrrGQ9_wOnDa04E124uNe5kPqMi9_EHPAxrQg_jejLnLPQ"/>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-label-md text-on-surface truncate mb-1">Glassmorphism Study</div>
+<div class="flex gap-4 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">favorite</span> 38.9k</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">chat_bubble</span> 856</span>
+</div>
+</div>
+</div>
+<!-- Post Item 3 -->
+<div class="flex gap-space-md items-center group cursor-pointer p-2 rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img alt="Top Post 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A vintage computing setup reimagined with modern glowing neon accents. A retro monitor displays complex glowing code, set against a deep midnight blue background. The aesthetic is 'retro-futurism' mixed with clean, modern editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoO9gYT1WkcWzu9j3yzQeLvQy6s0hf3hOLfx14B1UxWLVEMlT_4S3VVLggEwcjTu4PaJZLMzOvzUVMKqrNaxdXnChEopJDmHV-la0L-dHcJVmo2TSJMOHOyqf7rrTqCSvNx8LtZu_mQqke8vIPrDBiHz-WmIvNjsbL-n4mC6KMkj4E4tNqdJiOi0FsJu3LnI7JMKfyLWRb3VNsPGuYQJQoa3bJtCgkJZ_7fbBYy4FRgJzkMGAZ-JREWRkTI24z7w3dGUsqneeYDSpW"/>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-label-md text-on-surface truncate mb-1">Retro Tech Aesthetics</div>
+<div class="flex gap-4 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">favorite</span> 22.1k</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">chat_bubble</span> 432</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
