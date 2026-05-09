@@ -25,7 +25,7 @@ export default function CalendarPage() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-sans font-bold mb-2">Content Calendar</h1>
+          <h1 className="text-3xl font-bold mb-2">Content Calendar</h1>
           <p className="text-on-surface-variant">Schedule and manage your influencer posts.</p>
         </div>
         <Button variant="gradient" className="gap-2">
@@ -51,7 +51,7 @@ export default function CalendarPage() {
         </Card>
 
         <div className="space-y-6">
-          <h2 className="text-xl font-sans font-bold">Posts for {date?.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</h2>
+          <h2 className="text-xl font-bold">Posts for {date?.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</h2>
           
           {selectedPosts.length > 0 ? (
             <div className="space-y-4">

@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
+
+const greatVibes = Great_Vibes({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-great-vibes",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +32,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("dark", "h-full", "antialiased", inter.variable, "font-sans")}
+      className={cn(
+        "dark",
+        "h-full",
+        "antialiased",
+        inter.variable,
+        montserrat.variable,
+        greatVibes.variable,
+        "font-sans"
+      )}
     >
       <body className="min-h-full flex flex-col bg-background text-on-background">
         {children}

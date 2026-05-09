@@ -9,7 +9,7 @@ export default function LandingPage() {
       <header className="fixed top-0 w-full z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-gradient">InfluenceAI</span>
+            <span className="text-2xl logo-text text-gradient">InfluenceAI</span>
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <Link href="#features" className="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Features</Link>
@@ -37,7 +37,7 @@ export default function LandingPage() {
             
             <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-8">
               Generate Your Own <br />
-              <span className="text-gradient">AI Influencers</span>
+              <span className="text-gradient logo-text">AI Influencers</span>
             </h1>
             
             <p className="max-w-2xl mx-auto text-xl text-on-surface-variant mb-12 leading-relaxed">
@@ -120,7 +120,7 @@ export default function LandingPage() {
       <footer className="py-12 border-t border-white/5">
          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-2">
-              <span className="text-xl font-bold text-gradient">InfluenceAI</span>
+              <span className="text-xl logo-text text-gradient">InfluenceAI</span>
             </div>
             <p className="text-on-surface-variant text-sm">© 2024 InfluenceAI. All rights reserved.</p>
             <div className="flex gap-8">

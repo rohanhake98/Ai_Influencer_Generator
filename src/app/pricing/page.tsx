@@ -38,7 +38,7 @@ export default function PricingPage() {
       <header className="border-b border-white/5 bg-background/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-gradient">InfluenceAI</span>
+            <span className="text-2xl logo-text text-gradient">InfluenceAI</span>
           </Link>
           <Button variant="outline" size="sm" asChild>
             <Link href="/signin">Sign In</Link>

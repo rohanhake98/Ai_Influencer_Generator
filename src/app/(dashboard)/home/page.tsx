@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-sans font-bold mb-2">Welcome back, Sarah</h1>
+        <h1 className="text-3xl font-bold mb-2">Welcome back, Sarah</h1>
         <p className="text-on-surface-variant">Here&apos;s what&apos;s happening with your AI influencers today.</p>
       </div>
 

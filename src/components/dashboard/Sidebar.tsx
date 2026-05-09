@@ -23,7 +23,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="mb-10 px-2">
         <Link href="/home" className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-gradient">InfluenceAI</span>
+          <span className="text-2xl logo-text text-gradient">InfluenceAI</span>
         </Link>
       </div>
 

@@ -16,9 +16,9 @@ export default function SignUpPage() {
       <Card className="w-full max-w-md border-outline/10 bg-surface/50 backdrop-blur-xl">
         <CardHeader className="text-center space-y-2">
           <Link href="/" className="inline-block mb-4">
-             <span className="text-3xl font-sans font-bold text-gradient">InfluenceAI</span>
+             <span className="text-3xl logo-text text-gradient">InfluenceAI</span>
           </Link>
-          <CardTitle className="text-2xl font-sans">Create your account</CardTitle>
+          <CardTitle className="text-2xl">Create your account</CardTitle>
           <CardDescription>Join thousands of creators building the future</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
