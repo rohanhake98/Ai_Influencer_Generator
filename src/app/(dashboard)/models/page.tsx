@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModelCard } from "@/components/models/ModelCard"
-import { Plus, Search, Filter } from "lucide-react"
+import { Plus, Search, Filter, SlidersHorizontal } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 
@@ -40,10 +40,10 @@ export default function ModelsPage() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold mb-2">AI Influencer Library</h1>
-          <p className="text-on-surface-variant">Manage and view your generated AI personas.</p>
+          <h1 className="text-3xl font-bold mb-1 tracking-tight">AI Influencer Library</h1>
+          <p className="text-on-surface-variant text-sm">Manage and view your generated AI personas.</p>
         </div>
-        <Button variant="gradient" className="gap-2" asChild>
+        <Button variant="gradient" className="gap-2 rounded-xl h-10 px-5 shadow-glow font-semibold" asChild>
           <Link href="/models/create">
             <Plus className="size-4" />
             Create New Model
@@ -51,34 +51,61 @@ export default function ModelsPage() {
         </Button>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-on-surface-variant" />
-          <Input 
-            placeholder="Search models..." 
-            className="pl-10 border-outline/10 bg-surface-container-low" 
+      {/* Search & Filter Bar */}
+      <div className="flex flex-col md:flex-row items-center gap-3">
+        <div className="relative flex-1 w-full">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-on-surface-variant/50" />
+          <Input
+            placeholder="Search models..."
+            className="pl-10 border-white/[0.06] bg-white/[0.04] rounded-lg h-10 text-sm focus-visible:ring-primary/40"
           />
         </div>
-        <Button variant="outline" className="gap-2 border-outline/10">
-          <Filter className="size-4" />
-          Filter
-        </Button>
+        <div className="flex gap-2 w-full md:w-auto">
+          <Button variant="outline" className="flex-1 md:flex-none gap-2 border-white/[0.06] bg-white/[0.03] rounded-lg h-10 text-sm hover:bg-white/[0.06]">
+            <Filter className="size-4" />
+            Filter
+          </Button>
+          <Button variant="outline" className="flex-1 md:flex-none gap-2 border-white/[0.06] bg-white/[0.03] rounded-lg h-10 text-sm hover:bg-white/[0.06]">
+            <SlidersHorizontal className="size-4" />
+            Sort
+          </Button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Model Stats */}
+      <div className="flex flex-wrap gap-4 text-sm">
+        <div className="px-4 py-2 rounded-lg bg-surface/80 border border-white/[0.06]">
+          <span className="text-on-surface-variant">Total Models:</span>
+          <span className="ml-2 font-bold">{models.length}</span>
+        </div>
+        <div className="px-4 py-2 rounded-lg bg-success/8 border border-success/15">
+          <span className="text-success/70">Generated:</span>
+          <span className="ml-2 font-bold text-success">{models.filter(m => m.status === "generated").length}</span>
+        </div>
+        <div className="px-4 py-2 rounded-lg bg-warning/8 border border-warning/15">
+          <span className="text-warning/70">Pending:</span>
+          <span className="ml-2 font-bold text-warning">{models.filter(m => m.status === "pending").length}</span>
+        </div>
+      </div>
+
+      {/* Models Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {models.map((model) => (
           <ModelCard key={model.name} {...model} />
         ))}
-        
-        {/* Empty State / Create CTA */}
-        <Link 
+
+        {/* Create New CTA */}
+        <Link
           href="/models/create"
-          className="aspect-[4/5] rounded-lg border-2 border-dashed border-outline/20 flex flex-col items-center justify-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-all group"
+          className="aspect-[4/5] rounded-xl border-2 border-dashed border-white/[0.08] flex flex-col items-center justify-center gap-4 hover:border-primary/30 hover:bg-primary/[0.03] transition-all group"
         >
-          <div className="size-12 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-            <Plus className="size-6 text-on-surface-variant group-hover:text-primary transition-colors" />
+          <div className="size-14 rounded-xl bg-white/[0.04] flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+            <Plus className="size-7 text-on-surface-variant group-hover:text-primary transition-colors" />
           </div>
-          <span className="font-medium text-on-surface-variant group-hover:text-primary transition-colors">Create New Model</span>
+          <div className="text-center">
+            <span className="font-semibold text-on-surface-variant group-hover:text-primary transition-colors block">Create New Model</span>
+            <span className="text-xs text-on-surface-variant/50 mt-1">50 credits per model</span>
+          </div>
         </Link>
       </div>
     </div>

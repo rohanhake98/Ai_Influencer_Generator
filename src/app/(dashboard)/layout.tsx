@@ -1,4 +1,5 @@
 import { Sidebar } from "@/components/dashboard/Sidebar";
+import { Topbar } from "@/components/dashboard/Topbar";
 
 export default function DashboardLayout({
   children,
@@ -6,13 +7,16 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen bg-background text-on-background">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
-      <main className="flex-1 ml-sidebar-width">
-        <div className="p-margin-page max-w-7xl mx-auto">
-          {children}
-        </div>
-      </main>
+      <div className="flex-1 ml-sidebar-width flex flex-col">
+        <Topbar />
+        <main className="flex-1 p-6 md:p-8">
+          <div className="max-w-7xl mx-auto animate-fade-in-up">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
