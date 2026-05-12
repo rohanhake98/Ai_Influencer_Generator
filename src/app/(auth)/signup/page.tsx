@@ -1,11 +1,17 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { PasswordStrength } from "@/components/ui/password-strength"
 import { Globe, User, ArrowRight, Sparkles } from "lucide-react"
 
 export default function SignUpPage() {
+  const [password, setPassword] = useState("")
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6 relative">
       {/* Background Decoration */}
@@ -57,7 +63,15 @@ export default function SignUpPage() {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password" className="text-sm font-medium">Password</Label>
-              <Input id="password" type="password" placeholder="••••••••" className="bg-white/[0.04] border-white/[0.08] h-11 rounded-lg focus-visible:ring-primary/40" />
+              <Input 
+                id="password" 
+                type="password" 
+                placeholder="••••••••" 
+                className="bg-white/[0.04] border-white/[0.08] h-11 rounded-lg focus-visible:ring-primary/40" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <PasswordStrength password={password} />
             </div>
 
             <Button variant="gradient" className="w-full h-11 rounded-xl font-semibold shadow-glow group" asChild>

@@ -1,6 +1,6 @@
 "use client"
 
-import { Bell, Search, Sun, Moon, ChevronDown } from "lucide-react"
+import { Bell, Search, Sun, Moon, ChevronDown, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -13,11 +13,24 @@ import {
 import { Input } from "@/components/ui/input"
 import { useTheme } from "next-themes"
 
-export function Topbar() {
+interface TopbarProps {
+  onMenuToggle?: () => void
+}
+
+export function Topbar({ onMenuToggle }: TopbarProps) {
   const { setTheme, theme } = useTheme()
 
   return (
-    <header className="h-16 border-b border-white/[0.06] bg-background/60 backdrop-blur-xl sticky top-0 z-30 px-8 flex items-center justify-between gap-6">
+    <header className="h-16 border-b border-white/[0.06] bg-background/60 backdrop-blur-xl sticky top-0 z-30 px-4 md:px-8 flex items-center justify-between gap-6">
+      {/* Mobile Menu Button */}
+      <button
+        onClick={onMenuToggle}
+        className="md:hidden p-2 -ml-2 rounded-lg hover:bg-white/[0.06] transition-colors"
+        aria-label="Open menu"
+      >
+        <Menu className="size-6 text-on-surface" />
+      </button>
+
       {/* Search */}
       <div className="flex-1 max-w-md">
         <div className="relative group">

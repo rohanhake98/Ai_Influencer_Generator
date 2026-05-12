@@ -34,7 +34,7 @@ export default function SignInPage() {
             <div className="grid gap-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" className="text-sm font-medium">Password</Label>
-                <Link href="#" className="text-xs text-primary hover:underline font-medium">Forgot password?</Link>
+                <Link href="/forgot-password" className="text-xs text-primary hover:underline font-medium">Forgot password?</Link>
               </div>
               <Input id="password" type="password" placeholder="••••••••" className="bg-white/[0.04] border-white/[0.08] h-11 rounded-lg focus-visible:ring-primary/40" />
             </div>
